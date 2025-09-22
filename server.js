@@ -19,17 +19,17 @@ const name = process.env.NAME;
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Define a route handler for the root URL ('/')
-app.get('/', (req, res) => {
-    res.send(`Hello, ${name}, you are the best!`);
-});
+// // Define a route handler for the root URL ('/')
+// app.get('/', (req, res) => {
+//     res.send(`Hello, ${name}, you are the best!`);
+// });
 
 // Define the port number the server will listen on
 
 
 
 
-    /**
+/**
  * Routes
  */
 app.get('/', (req, res) => {
