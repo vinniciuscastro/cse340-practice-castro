@@ -6,6 +6,8 @@ html, body {
 }
 
 body {
+    text-align: center;
+    
     nav {
         ul {
             list-style-type: none;
@@ -27,4 +29,25 @@ body {
             }
         }
     }
+}
+
+.header-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header-section img {
+    width: 150px;
+    height: auto;
+}
+
+.images {
+    text-align: center;
+}
+
+.images img {
+    width: 300px;
+    height: auto;
 }
