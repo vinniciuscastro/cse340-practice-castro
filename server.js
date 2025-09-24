@@ -52,6 +52,16 @@ app.get('/products', (req, res) => {
     res.render('products', { title });
 });
 
+
+// Practice learning 
+app.get('/student', (req, res) => {
+    const name = "Vinnie";
+    const id = "858345317";
+    const email = "cas21003@byui.edu";
+    const address = "Rexburg, ID";
+    res.render('student', { name, id, email, address });
+});
+
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
     console.log(`Server is running on http://127.0.0.1:${PORT}`);
