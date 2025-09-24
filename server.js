@@ -55,11 +55,12 @@ app.get('/products', (req, res) => {
 
 // Practice learning 
 app.get('/student', (req, res) => {
+    const title = "Student Information";
     const name = "Vinnie";
     const id = "858345317";
     const email = "cas21003@byui.edu";
     const address = "Rexburg, ID";
-    res.render('student', { name, id, email, address });
+    res.render('student', { title, name, id, email, address });
 });
 
 // Start the server and listen on the specified port
