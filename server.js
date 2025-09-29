@@ -47,22 +47,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// When in development mode, start a WebSocket server for live reloading
-if (NODE_ENV.includes('dev')) {
-    const ws = await import('ws');
-    try {
-        const wsPort = parseInt(PORT) + 1;
-        const wsServer = new ws.WebSocketServer({ port: wsPort });
-        wsServer.on('listening', () => {
-            console.log(`WebSocket server is running on port ${wsPort}`);
-        });
-        wsServer.on('error', (error) => {
-            console.error('WebSocket server error:', error);
-        });
-    } catch (error) {
-        console.error('Failed to start WebSocket server:', error);
-    }
-}
+
+
 
 /**
  * Routes
@@ -92,6 +78,47 @@ app.get('/student', (req, res) => {
     const address = "Rexburg, ID";
     res.render('student', { title, name, id, email, address });
 });
+
+// stuff done in class just to understand error handling
+app.use((req, res, next) => {
+    const err = new Error('Page Not Found');
+    err.status = 404;
+    next(err);
+});
+
+app.get('/demo/:color/:food', (req, res) => {
+    const title = 'Params Demo';
+    const { color, food } = req.params;
+    res.render('demo', { title, color, food });
+});
+
+// Global error handling middleware
+app.use((err,req, res, next) => {
+    if (err.status === 404) {
+        res.status(404);
+        const title = '404 - Page Not Found';
+        res.render('404', { title });
+    }
+    res.status(err.status || 500);
+});
+
+
+// When in development mode, start a WebSocket server for live reloading
+if (NODE_ENV.includes('dev')) {
+    const ws = await import('ws');
+    try {
+        const wsPort = parseInt(PORT) + 1;
+        const wsServer = new ws.WebSocketServer({ port: wsPort });
+        wsServer.on('listening', () => {
+            console.log(`WebSocket server is running on port ${wsPort}`);
+        });
+        wsServer.on('error', (error) => {
+            console.error('WebSocket server error:', error);
+        });
+    } catch (error) {
+        console.error('Failed to start WebSocket server:', error);
+    }
+}
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {

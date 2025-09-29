@@ -20,11 +20,14 @@ This is the way to write HTML with placeholders.
 EJS Templating Engine Cheatsheet
 This cheatsheet provides a quick reference to common EJS templating syntax and their usage:
 
-Syntax	Description
+<!-- Syntax	Description
 <%= %>	Outputs the value of the variable, escaped to prevent XSS (Cross-Site Scripting).
 <%- %>	Outputs unescaped HTML (use with caution to avoid XSS).
 <% %>	Executes JavaScript code without outputting anything.
 <%# %>	Comment tag, does not output anything to the rendered HTML.
-<%% %>	Outputs a literal <% in the rendered template.
-<? ?>	Alternate syntax for <% %>, often used for compatibility with XML.
+<%% %>	Outputs a literal < % in the rendered template.
+<? ?>	Alternate syntax for <% %>, often used for compatibility with XML. -->
+_______________________________________________________________________________________
+Monday Class - 9/29/2025 
 
+Error handling errors
