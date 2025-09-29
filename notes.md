@@ -9,12 +9,12 @@ Difference between Frameworks and Libraries
 
 09-22-2025 ~ Class Notes
 
-Request Response Lifecycle - The internet is built in Client request and Server response. Middleware 
-is the middle man taking care of the request and responses to make sure requests are authenticated 
+Request Response Lifecycle - The internet is built on Client request and Server response. Middleware
+is the middleman taking care of the request and responses to make sure requests are authenticated.
 Middleware is essentially a chain of functions (arrow functions).
 
 
-Templating EJS (Embedded Javascript) This is a Templating Engine
+Templating EJS (Embedded JavaScript) - This is a Templating Engine.
 This is the way to write HTML with placeholders. 
 
 EJS Templating Engine Cheatsheet
