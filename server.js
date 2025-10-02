@@ -93,52 +93,41 @@ app.get('/student', (req, res) => {
     res.render('student', { title, name, id, email, address });
 });
 
-// Future professional approach (preview)
-app.use((err, req, res, next) => {
-    const status = err.status || 500;
-    // Render appropriate error template
-    res.status(status).render(`errors/${status}`, {
-        title: 'Error',
-        message: err.message,
-        // Additional template data...
-    });
+// Test route for 500 errors
+app.get('/test-error', (req, res, next) => {
+    const err = new Error('This is a test error');
+    err.status = 500;
+    next(err);
 });
-// Global error handler processes both 404s and 500s
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    const status = err.status || 500;
-    const message = status === 404
-        ? 'The page you requested does not exist.'
-        : 'An unexpected server error occurred.';
-    res.status(status).send(message);
-});
-// Catch-all middleware for unmatched routes
-app.use((req, res, next) => {
-    const err = new Error('Page Not Found');
-    err.status = 404;
-    next(err); // Forward to global error handler
-});
-// stuff done in class just to understand error handling
+
+// Catch-all route for 404 errors
 app.use((req, res, next) => {
     const err = new Error('Page Not Found');
     err.status = 404;
     next(err);
 });
 
-// app.get('/demo/:color/:food', (req, res) => {
-//     const title = 'Params Demo';
-//     const { color, food } = req.params;
-//     res.render('demo', { title, color, food });
-// });
 
-// Global error handling middleware
-app.use((err,req, res, next) => {
-    if (err.status === 404) {
-        res.status(404);
-        const title = '404 - Page Not Found';
-        res.render('404', { title });
-    }
-    res.status(err.status || 500);
+
+// Global error handler
+app.use((err, req, res, next) => {
+    // Log error details for debugging
+    console.error('Error occurred:', err.message);
+    console.error('Stack trace:', err.stack);
+
+    // Determine status and template
+    const status = err.status || 500;
+    const template = status === 404 ? '404' : '500';
+
+    // Prepare data for the template
+    const context = {
+        title: status === 404 ? 'Page Not Found' : 'Server Error',
+        error: err.message,
+        stack: err.stack
+    };
+
+    // Render the appropriate error template
+    res.status(status).render(`errors/${template}`, context);
 });
 
 
