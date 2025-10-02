@@ -46,7 +46,21 @@ app.use((req, res, next) => {
     // Continue to the next middleware or route handler
     next();
 });
+// Global error handler - note the four parameters
+app.use((err, req, res, next) => {
+    // Log error details for developers
+    console.error('Error occurred:', err.message);
+    console.error('Stack trace:', err.stack);
 
+    // Determine response based on error type
+    const status = err.status || 500;
+    const message = status === 404 
+        ? 'The page you requested could not be found.' 
+        : 'An unexpected error occurred. Please try again later.';
+
+    // Send appropriate response to user
+    res.status(status).send(message);
+});
 
 
 
@@ -79,6 +93,31 @@ app.get('/student', (req, res) => {
     res.render('student', { title, name, id, email, address });
 });
 
+// Future professional approach (preview)
+app.use((err, req, res, next) => {
+    const status = err.status || 500;
+    // Render appropriate error template
+    res.status(status).render(`errors/${status}`, {
+        title: 'Error',
+        message: err.message,
+        // Additional template data...
+    });
+});
+// Global error handler processes both 404s and 500s
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    const status = err.status || 500;
+    const message = status === 404
+        ? 'The page you requested does not exist.'
+        : 'An unexpected server error occurred.';
+    res.status(status).send(message);
+});
+// Catch-all middleware for unmatched routes
+app.use((req, res, next) => {
+    const err = new Error('Page Not Found');
+    err.status = 404;
+    next(err); // Forward to global error handler
+});
 // stuff done in class just to understand error handling
 app.use((req, res, next) => {
     const err = new Error('Page Not Found');
@@ -86,11 +125,11 @@ app.use((req, res, next) => {
     next(err);
 });
 
-app.get('/demo/:color/:food', (req, res) => {
-    const title = 'Params Demo';
-    const { color, food } = req.params;
-    res.render('demo', { title, color, food });
-});
+// app.get('/demo/:color/:food', (req, res) => {
+//     const title = 'Params Demo';
+//     const { color, food } = req.params;
+//     res.render('demo', { title, color, food });
+// });
 
 // Global error handling middleware
 app.use((err,req, res, next) => {
