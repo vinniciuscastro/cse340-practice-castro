@@ -74,6 +74,17 @@ main {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* 404 Error Page Specific Styling */
+.header-section.error-404 {
+    background-color: black;
+    padding: 40px;
+}
+
+.header-section.error-404 img {
+    width: 400px;
+    height: auto;
+}
+
 /* Title Styling */
 h1 {
     color: #333;
