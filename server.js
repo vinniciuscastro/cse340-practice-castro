@@ -77,6 +77,8 @@ app.set('views', path.join(__dirname, 'src/views'));
  * Makes common variables available to all EJS templates without having to pass
  * them individually from each route handler
  */
+
+// Global template variables...
 app.use((req, res, next) => {
     // Make NODE_ENV available to all templates
     res.locals.NODE_ENV = NODE_ENV.toLowerCase() || 'production';
@@ -84,6 +86,48 @@ app.use((req, res, next) => {
     // Continue to the next middleware or route handler
     next();
 });
+app.use((req, res, next) => {
+    // Make NODE_ENV available to all templates
+    res.locals.NODE_ENV = NODE_ENV.toLowerCase() || 'production';
+
+    // Continue to the next middleware or route handler
+    next();
+});
+// Global middleware for time-based greeting
+app.use((req, res, next) => {
+    const currentHour = new Date().getHours();
+    /**
+     * Create logic to set different greetings based on the current hour.
+     * Use res.locals.greeting to store the greeting message.
+     * Hint: morning (before 12), afternoon (12-17), evening (after 17)
+     */
+    if (currentHour < 12) {
+        res.locals.greeting = 'Good morning';
+    } else if (currentHour < 18) {
+        res.locals.greeting = 'Good afternoon';
+    } else {
+        res.locals.greeting = 'Good evening';
+    }
+    next();
+});
+
+app.use((req, res, next) => {
+    const themes = ['yellow-theme', 'pink-theme', 'blue-theme'];
+    // Your task: Pick a random theme from the array
+    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+    res.locals.bodyClass = randomTheme;
+    next();
+});
+
+// Global middleware to share query parameters with templates
+app.use((req, res, next) => {
+    // Your task: Make req.query available to all templates
+    // Add it to res.locals so templates can access query parameters
+    res.locals.queryParams = req.query;
+
+    next();
+});
+
 // Global error handler - note the four parameters
 app.use((err, req, res, next) => {
     // Log error details for developers
@@ -101,6 +145,26 @@ app.use((err, req, res, next) => {
 });
 
 
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next(); // Pass control to the next middleware or route
+});
+
+// Middleware to add global data to all templates
+app.use((req, res, next) => {
+    // Add current year for copyright
+    res.locals.currentYear = new Date().getFullYear();
+    next();
+});
+// Route-specific middleware that sets custom headers
+const addDemoHeaders = (req, res, next) => {
+    // Your task: Set custom headers using res.setHeader()
+    // Add a header called 'X-Demo-Page' with value 'true'
+    // Add a header called 'X-Middleware-Demo' with any message you want
+    res.setHeader('X-Demo-Page', 'true');
+    res.setHeader('X-Middleware-Demo', 'This is a custom middleware demo');
+    next();
+};
 
 /**
  * Routes
@@ -179,6 +243,12 @@ app.get('/catalog/:courseId', (req, res, next) => {
     });
 });
 
+// Demo page route with header middleware
+app.get('/demo', addDemoHeaders, (req, res) => {
+    res.render('demo', {
+        title: 'Middleware Demo Page'
+    });
+});
 // Test route for 500 errors
 app.get('/test-error', (req, res, next) => {
     const err = new Error('This is a test error');

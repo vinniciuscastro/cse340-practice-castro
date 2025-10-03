@@ -1,5 +1,4 @@
 html, body {
-    background-color: rgb(253, 255, 164);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
@@ -8,6 +7,19 @@ html, body {
 
 body {
     text-align: center;
+    background-color: rgb(253, 255, 164);
+}
+
+body.yellow-theme {
+    background-color: #fffacd;
+}
+
+body.pink-theme {
+    background-color: #ffe3f6;
+}
+
+body.blue-theme {
+    background-color: #e3f2fd;
 }
 
 /* Navigation Styling */
@@ -45,6 +57,22 @@ nav a:hover {
     background-color: rgba(0, 102, 204, 0.1);
 }
 
+/* Theme-specific nav hover effects */
+body.yellow-theme nav a:hover {
+    background-color: rgba(255, 235, 59, 0.3);
+    color: #f57f17;
+}
+
+body.pink-theme nav a:hover {
+    background-color: rgba(255, 182, 193, 0.3);
+    color: #c2185b;
+}
+
+body.blue-theme nav a:hover {
+    background-color: rgba(100, 181, 246, 0.3);
+    color: #0d47a1;
+}
+
 /* Main Content Box */
 main {
     background-color: white;
@@ -72,6 +100,19 @@ main {
     height: auto;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme-specific header section backgrounds */
+body.yellow-theme .header-section:not(.error-404) {
+    background-color: rgba(255, 250, 205, 0.5);
+}
+
+body.pink-theme .header-section:not(.error-404) {
+    background-color: rgba(255, 227, 246, 0.5);
+}
+
+body.blue-theme .header-section:not(.error-404) {
+    background-color: rgba(227, 242, 253, 0.5);
 }
 
 /* 404 Error Page Specific Styling */
@@ -103,7 +144,19 @@ p {
     background-color: rgba(173, 216, 230, 0.2);
     padding: 20px;
     border-radius: 10px;
-    border-left: 4px solid #f5f858;
+}
+
+/* Theme-specific paragraph backgrounds */
+body.yellow-theme p {
+    background-color: rgba(255, 250, 205, 0.5);
+}
+
+body.pink-theme p {
+    background-color: rgba(255, 227, 246, 0.5);
+}
+
+body.blue-theme p {
+    background-color: rgba(227, 242, 253, 0.5);
 }
 
 /* Images Section */
