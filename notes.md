@@ -31,3 +31,15 @@ ________________________________________________________________________________
 Monday Class - 9/29/2025 
 
 Error handling errors
+
+_______________________________________________________________________________________
+Monday Class - 10/06/2025 
+
+We started class on MVP (Minimum Viable Product) which helps with refactoring code 
+
+MVC Model View Controller can also be found as MVR Model, View, Routes. 
+
+
+M - cares about data (usually database)
+V - cares about the HTML and CSS 
+C - cares about the routes (JavaScript)
