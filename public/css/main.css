@@ -195,3 +195,32 @@ footer p {
     display: inline;
     color: #333;
 }
+
+/* About page content styling */
+.about-content {
+    background-color: rgba(173, 216, 230, 0.2);
+    padding: 40px 60px;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.about-content p {
+    background-color: transparent !important;
+    padding: 0;
+    margin: 15px 0;
+    text-align: left;
+}
+
+body.yellow-theme .about-content {
+    background-color: rgba(255, 250, 205, 0.5);
+}
+
+body.pink-theme .about-content {
+    background-color: rgba(255, 227, 246, 0.5);
+}
+
+body.blue-theme .about-content {
+    background-color: rgba(227, 242, 253, 0.5);
+}
