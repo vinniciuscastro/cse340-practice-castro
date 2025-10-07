@@ -40,7 +40,7 @@ const addOptionalLocalVariables = (req, res, next) => {
     res.locals.greeting = `<p>${getCurrentGreeting()}</p>`;
 
     // Randomly assign a theme class to the body
-    const themes = ['blue-theme', 'green-theme', 'red-theme'];
+    const themes = ['yellow-theme', 'pink-theme', 'blue-theme'];
 
     // Pick a random theme from the array
     const randomTheme = themes[Math.floor(Math.random() * themes.length)];
