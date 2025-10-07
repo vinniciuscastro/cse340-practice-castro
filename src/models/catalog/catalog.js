@@ -1,11 +1,3 @@
-// Method 1: Individual exports (export as you define)
-export const getAllCourses = () => { /* ... */ };
-
-// Method 2: Define functions, then export at the end
-const getAllCourses = () => { /* ... */ };
-
-export { getAllCourses };
-
 // Enhanced course data object
 const courses = {
     'CS121': {
