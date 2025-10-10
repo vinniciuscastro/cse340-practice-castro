@@ -43,3 +43,4 @@ MVC Model View Controller can also be found as MVR Model, View, Routes.
 M - cares about data (usually database)
 V - cares about the HTML and CSS 
 C - cares about the routes (JavaScript)
+
