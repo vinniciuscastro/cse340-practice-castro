@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { addDemoHeaders } from '../middleware/demo/headers.js';
 import { catalogPage, courseDetailPage } from './catalog/catalog.js';
 import { homePage, aboutPage, demoPage, testErrorPage } from './index.js';
+import { facultyListPage, facultyDetailPage } from './faculty/faculty.js';
 
 // Create a new router instance
 const router = Router();
@@ -18,6 +19,10 @@ router.get('/catalog/:courseId', courseDetailPage);
 
 // Demo page with special middleware
 router.get('/demo', addDemoHeaders, demoPage);
+
+// Faculty routes
+router.get('/faculty', facultyListPage);
+router.get('/faculty/:facultyId', facultyDetailPage);
 
 // Route to trigger a test error
 router.get('/test-error', testErrorPage);
