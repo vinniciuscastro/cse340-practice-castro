@@ -7,8 +7,6 @@ import { facultyListPage, facultyDetailPage } from './faculty/faculty.js';
 // Create a new router instance
 const router = Router();
 
-// TODO: Add import statements for controllers and middleware
-// TODO: Add route definitions
 // Home and basic pages
 router.get('/', homePage);
 router.get('/about', aboutPage);
