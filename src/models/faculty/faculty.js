@@ -75,12 +75,15 @@ const faculty = {
 };
 
 const getFacultyById = (facultyId) => {
-    // TODO: Look up faculty member by ID, return null if not found
+    return faculty[facultyId] || null;
 };
 
 const getSortedFaculty = (sortBy) => {
-    // TODO: Validate sortBy parameter (name, department, or title), default to 'department' if invalid
-
+    // Validate sortBy parameter
+    const validSorts = ['name', 'department', 'title'];
+    if (!validSorts.includes(sortBy)) {
+        sortBy = 'name';
+    }
     // Create an array of all faculty members
     const facultyArray = [];
     for (const key in faculty) {
