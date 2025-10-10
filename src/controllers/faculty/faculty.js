@@ -22,7 +22,7 @@ const facultyDetailPage = (req, res, next) => {
         err.status = 404;
         return next(err);
     }   
-    res.render('faculty-detail', {
+    res.render('faculty/detail', {
         title: facultyMember.name,
         faculty: facultyMember
     });
