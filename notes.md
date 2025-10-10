@@ -44,3 +44,11 @@ M - cares about data (usually database)
 V - cares about the HTML and CSS 
 C - cares about the routes (JavaScript)
 
+
+_______________________________________________________________________________________
+Wednesday Class - 10/08/2025
+
+Node and nodemode when using both env sometimes process can be left running and there can have some abandoned process or orphan. 
+
+Code Review
+Code smell 
