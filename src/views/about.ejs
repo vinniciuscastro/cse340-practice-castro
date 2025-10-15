@@ -1,55 +1,45 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Vinnicius</title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
-<body>
-    <div class="header-section">
-        <img src="/images/yellow.jpg" alt="Vinnicius Castro - Yellow photo" />
-        <h1>About me</h1>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/products">Products</a></li>
-        </ul>
-    </nav>
-    <p>My name is Vinnicius Castro, but I go by Vinnie. I'm a Software Engineer major, and I like going to the gym, playing pickleball, and swimming.</p>
-    
-    <div class="images">
-        <img src="/images/social.jpg" alt="Vinnicius Castro - Social photo" />
-    </div>
-</body>
-</html> -->
-
 <%- include('partials/header') %>
 <main>
-    <div class="header-section">
-        <img src="/images/yellow.jpg" alt="Me in Yellow" />
-    </div>
     <h1><%= title %></h1>
-    <div class="about-content">
-        <p>My name is Vinnicius Castro, but I go by Vinnie. I'm a Software Engineer major, and I like going to the gym, playing pickleball, and swimming.</p>
+    <section class="profile">
+        <div class="image">
+            <img src="/images/bro-keers-side-selfie.png" alt="Brother Keers" class="shift">
+        </div>
+        <div class="content">
+            <h2>Brother Keers</h2>
 
-        <p>Born and raised in São Paulo, Brazil, I am the youngest of two. I'm a senior student at Brigham Young University - Idaho, majoring in Software Engineering with an emphasis on Quality Assurance.</p>
+            <h3>Education</h3>
+            <ul>
+                <li>MS Software Development (2022), Boston University (MET)</li>
+                <li>BS Computer Information Technology (2017), Brigham Young University-Idaho</li>
+                <li>AS Computer Programming (2015), Riverside City College</li>
+            </ul>
 
-        <p>Throughout my academic journey, I have participated in and created Python, C#, JavaScript, and SQL projects. I have also written CMM plans, testing reports, and risk mitigation plans.</p>
+            <h3>Industry Experience</h3>
+            <ul>
+                <li>Faculty at Brigham Young University-Idaho (2019 &ndash; Present)</li>
+                <li>Small business owner of Caboodle Tech Inc, now focusing on open source software (2013 &ndash; Present)</li>
+                <li>Interim CTO of Staffworx (2023 &ndash; May 2025)</li>
+            </ul>
 
-        <p>My work style is detail-oriented and supportive. I'm passionate about collaborative work and firmly believe that quality outcomes stem from collective efforts. I care deeply about self-development, and this need to better myself is reflected in my work. Therefore, I'm always looking for ways to improve processes and results.</p>
+            <h3>Teaching Experience</h3>
+            <ul>
+                <li>Faculty at Brigham Young University-Idaho (2019 &ndash; Present)</li>
+                <li>Brookwood Elementary Computer Lab Instructor (2016)</li>
+                <li>Camp Tahquitz Woodworking, Woodcarving, and Carpentry Instructor, 4 Summers</li>
+            </ul>
+            
+            <h3>Volunteer Experience</h3>
+            <ul>
+                <li>Community of Tahquitz Honor Scouting Society</li>
+                <li>Missionary, Perth, Western Australia (2011 - 2013)</li>
+            </ul>
 
-        <p>Looking ahead, I aspire to get an opportunity to professionally contribute and develop skills and expertise as a Software Engineer. My experience in emphasis on quality assurance prepared me to acquire the knowledge needed to meet quality requirements.</p>
-
-        <p>In my downtime, I enjoy exercising and spending time with friends and family. I strive to have a balanced life and become the best version of myself.</p>
-
-        <p>Feel free to connect with me on <a href="https://www.linkedin.com/in/vinnicius-castro/" target="_blank">LinkedIn</a>.</p>
-    </div>
-
-    <div class="images">
-        <img src="/images/social.jpg" alt="Me" />
-    </div>
+            <h3>Personal</h3>
+            <p>
+                Christopher enjoys spending time outdoors, whether it's at the local park, camping, hiking, or swimming. While he enjoys staying active outdoors, he also appreciates relaxing activities like movies with friends, board games, or getting lost in a good book. In Christopher's free time, he enjoys working on carpentry projects and exploring other creative hobbies. Recently, he has developed a passion for travel, aiming to explore two new countries/locations each year.
+            </p>
+        </div>
+    </section>
 </main>
 <%- include('partials/footer') %>

@@ -1,39 +1,26 @@
 <%- include('../partials/header') %>
 <main>
-    <div class="faculty-detail-header">
-        <h1><%= faculty.name %></h1>
-        <p class="faculty-title-large"><%= faculty.title %></p>
-        <p class="faculty-department-large"><%= faculty.department %></p>
+    <div class="faculty-profile">
+        <h1><%= facultyMember.name %></h1>
+        <p class="faculty-title"><%= facultyMember.title %></p>
+        <p class="faculty-department"><%= facultyMember.department %> Department</p>
     </div>
-
-    <div class="faculty-info">
-        <div class="info-section">
-            <h2>Contact Information</h2>
-            <div class="contact-details">
-                <div class="contact-item">
-                    <strong>Office:</strong>
-                    <span><%= faculty.office %></span>
-                </div>
-                <div class="contact-item">
-                    <strong>Phone:</strong>
-                    <span><%= faculty.phone %></span>
-                </div>
-                <div class="contact-item">
-                    <strong>Email:</strong>
-                    <span><a href="mailto:<%= faculty.email %>"><%= faculty.email %></a></span>
-                </div>
+    
+    <div class="faculty-contact">
+        <h2>Contact Information</h2>
+        <div class="contact-details">
+            <div class="contact-item">
+                <strong>Office:</strong> <%= facultyMember.office %>
             </div>
-        </div>
-
-        <div class="info-section">
-            <h2>Department Information</h2>
-            <div class="department-details">
-                <p><strong>Department:</strong> <%= faculty.department %></p>
-                <p><strong>Position:</strong> <%= faculty.title %></p>
+            <div class="contact-item">
+                <strong>Phone:</strong> <a href="tel:<%= facultyMember.phone %>"><%= facultyMember.phone %></a>
+            </div>
+            <div class="contact-item">
+                <strong>Email:</strong> <a href="mailto:<%= facultyMember.email %>"><%= facultyMember.email %></a>
             </div>
         </div>
     </div>
-
+    
     <div class="navigation">
         <p><a href="/faculty">&larr; Back to Faculty Directory</a></p>
     </div>
