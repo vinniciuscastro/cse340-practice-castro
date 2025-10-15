@@ -58,3 +58,7 @@ Wednesday Class - 10/15/2025
 
 
 Slug = unique ID, kinda like 
+
+
+Green field - projects are projects that start from the very beginning 
+Brown field - projects that already started 
