@@ -51,4 +51,14 @@ Wednesday Class - 10/08/2025
 Node and nodemode when using both env sometimes process can be left running and there can have some abandoned process or orphan. 
 
 Code Review
-Code smell 
+Code smell
+
+_______________________________________________________________________________________
+Wednesday Class - 10/15/2025
+
+
+Slug = unique ID, kinda like 
+
+
+Green field - projects are projects that start from the very beginning 
+Brown field - projects that already started 

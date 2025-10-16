@@ -26,6 +26,15 @@
                 </div>
             <% }); %>
         </div>
+
+        <% if (Object.keys(queryParams).length > 0) { %>
+            <p><strong>Query Parameters:</strong></p>
+            <ul>
+                <% Object.keys(queryParams).forEach(key => { %>
+                    <li><%= key %>: <%= queryParams[key] %></li>
+                <% }); %>
+            </ul>
+        <% } %>
     </div>
 
     <div class="navigation">

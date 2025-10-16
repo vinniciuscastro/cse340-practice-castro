@@ -1,4 +1,5 @@
-import { getAllCourses, getCourseById, getSortedSections } from '../../models/catalog/catalog.js';
+import { getAllCourses, getCourseById } from '../../models/catalog/courses.js';
+import { getSortedSections } from '../../models/catalog/catalog.js';
 
 // Route handler for the course catalog list page
 const catalogPage = (req, res) => {

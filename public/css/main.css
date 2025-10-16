@@ -178,6 +178,26 @@ body.blue-theme p {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+/* Greeting Box - positioned before footer */
+.greeting-box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.greeting-box p {
+    background-color: transparent !important;
+    padding: 0;
+    margin: 0;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 /* Footer styling if needed */
 footer {
     background-color: white;
