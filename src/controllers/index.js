@@ -4,7 +4,7 @@ const homePage = (req, res) => {
 };
 
 const aboutPage = (req, res) => {
-    res.render('about', { title: 'About' });
+    res.render('about', { title: 'About Me' });
 };
 
 const demoPage = (req, res) => {
