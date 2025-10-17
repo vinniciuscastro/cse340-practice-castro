@@ -241,6 +241,8 @@ const getSortedSections = async (courseSlug, sortBy = 'time') => {
         }
         
         return sections;
+
+        
         
     } catch (error) {
         console.error('Error getting sorted sections:', error.message);
