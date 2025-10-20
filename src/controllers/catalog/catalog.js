@@ -1,6 +1,13 @@
 import { getAllCourses, getCourseById, getCourseBySlug } from '../../models/catalog/courses.js';
 import { getSortedSections } from '../../models/catalog/catalog.js';
 
+/**
+ * Helper function to add styles specific to the catalog pages only
+ */
+const addCatalogSpecificStyles = (res) => {
+    res.addStyle('<link rel="stylesheet" href="/css/catalog.css">');
+};
+
 // Route handler for the course catalog list page
 const catalogPage = async (req, res) => {
     const courses = await getAllCourses();
