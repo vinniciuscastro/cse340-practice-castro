@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { getAllCourses, getCourseBySlug} from '../../models/catalog/courses.js';
-=======
-import { getAllCourses, getCourseById, getCourseBySlug } from '../../models/catalog/courses.js';
->>>>>>> adc9279eda9e4ac7e6897553a582120a24504e68
 import { getSortedSections } from '../../models/catalog/catalog.js';
 
 /**
