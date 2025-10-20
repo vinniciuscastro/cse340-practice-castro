@@ -62,3 +62,15 @@ Slug = unique ID, kinda like
 
 Green field - projects are projects that start from the very beginning 
 Brown field - projects that already started 
+
+
+_______________________________________________________________________________________
+Monday Class - 10/20/2025
+
+This week we have a routes challenge, where we are going to work on a website to book the train routes
+
+we are going to add registration and authentication in the page now (so please lock in and fix the code)
+
+
+Droplet Digital Ocean - ssh database set up $6 per month
+            name cheap 
