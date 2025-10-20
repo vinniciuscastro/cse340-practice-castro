@@ -12,7 +12,7 @@ const addCatalogSpecificStyles = (res) => {
 const catalogPage = async (req, res) => {
     const courses = await getAllCourses();
 
-    res.render('catalog', {
+    res.render('catalog/list', {
         title: 'Course Catalog',
         courses: courses
     });
@@ -35,7 +35,7 @@ const courseDetailPage = async (req, res, next) => {
     const sortBy = req.query.sort || 'time';
     const sections = await getSortedSections(courseSlug, sortBy);
 
-    res.render('course-detail', {
+    res.render('catalog/detail', {
         title: `${course.courseCode} - ${course.name}`,
         course: course,
         sections: sections,
