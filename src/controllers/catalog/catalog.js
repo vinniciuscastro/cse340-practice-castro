@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 import { getAllCourses, getCourseBySlug} from '../../models/catalog/courses.js';
+=======
+import { getAllCourses, getCourseById, getCourseBySlug } from '../../models/catalog/courses.js';
+>>>>>>> adc9279eda9e4ac7e6897553a582120a24504e68
 import { getSortedSections } from '../../models/catalog/catalog.js';
+
+/**
+ * Helper function to add styles specific to the catalog pages only
+ */
+const addCatalogSpecificStyles = (res) => {
+    res.addStyle('<link rel="stylesheet" href="/css/catalog.css">');
+};
 
 // Route handler for the course catalog list page
 const catalogPage = async (req, res) => {

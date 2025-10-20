@@ -1,5 +1,12 @@
 import { getFacultyById,getSortedFaculty } from '../../models/faculty/faculty.js';
 
+/**
+ * Helper function to add styles specific to the faculty pages only
+ */
+const addFacultySpecificStyles = (res) => {
+    res.addStyle('<link rel="stylesheet" href="/css/faculty.css">');
+};
+
 // Function that renders the faculty list page
 const facultyListPage = async (req, res) => {
     const sortBy = req.query.sort || 'name';
