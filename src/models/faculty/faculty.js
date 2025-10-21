@@ -87,11 +87,13 @@ const getFacultyBySlug = async (facultySlug) => {
  */
 const getSortedFaculty = async (sortBy = 'department') => {
     try {
+        console.log('Model received sortBy:', sortBy);
         const validSortFields = ['name', 'department', 'title'];
         if (!validSortFields.includes(sortBy)) {
+            console.log('Invalid sort field, defaulting to department');
             sortBy = 'department';
         }
-        
+
         let orderByClause;
         switch (sortBy) {
             case 'name':
@@ -106,17 +108,19 @@ const getSortedFaculty = async (sortBy = 'department') => {
             default:
                 orderByClause = 'd.name, f.last_name, f.first_name';
         }
-        
+
+        console.log('Using ORDER BY clause:', orderByClause);
+
         const query = `
-            SELECT f.id, f.first_name, f.last_name, f.office, f.phone, f.email, 
+            SELECT f.id, f.first_name, f.last_name, f.office, f.phone, f.email,
                    f.title, f.gender, f.slug, d.name as department_name, d.code as department_code
             FROM faculty f
             JOIN departments d ON f.department_id = d.id
             ORDER BY ${orderByClause}
         `;
-        
+
         const result = await db.query(query);
-        
+
         return result.rows.map(faculty => ({
             id: faculty.id,
             firstName: faculty.first_name,
@@ -131,7 +135,7 @@ const getSortedFaculty = async (sortBy = 'department') => {
             gender: faculty.gender,
             slug: faculty.slug
         }));
-        
+
     } catch (error) {
         console.error('Error getting sorted faculty:', error.message);
         return [];
