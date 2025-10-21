@@ -33,13 +33,17 @@ const courseDetailPage = async (req, res, next) => {
 
     // Handle sorting if requested
     const sortBy = req.query.sort || 'time';
+    console.log('Sort parameter:', sortBy);
     const sections = await getSortedSections(courseSlug, sortBy);
+    console.log('Number of sections:', sections.length);
+    console.log('First section:', sections[0]);
 
     res.render('course-detail', {
         title: `${course.courseCode} - ${course.name}`,
         course: course,
         sections: sections,
-        currentSort: sortBy
+        currentSort: sortBy,
+        queryParams: req.query
     });
 };
 
