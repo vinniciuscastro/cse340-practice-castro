@@ -8,8 +8,13 @@ import bcrypt from 'bcrypt';
  */
 const hashPassword = async (plainPassword) => {
     try {
-        // TODO: Use bcrypt.hash() with the password and salt rounds of 10
+        // Use bcrypt.hash() with the password and salt rounds of 10
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(plainPassword, saltRounds);
+
         // Return the hashed password
+        return hashedPassword;
+
     } catch (error) {
         console.error('Error hashing password:', error);
         return null;
@@ -26,8 +31,12 @@ const emailExists = async (email) => {
         const query = 'SELECT COUNT(*) FROM users WHERE email = $1';
         const result = await db.query(query, [email]);
 
-        // TODO: Return true if count > 0, false otherwise
-        // HINT: result.rows[0].count will be a string, convert to number
+        // Return true if count > 0, false otherwise
+        if (Number(result.rows[0].count) > 0) {
+            return true;
+        } else {
+            return false;
+        }
 
     } catch (error) {
         console.error('DB Error in emailExists:', error);
@@ -44,7 +53,8 @@ const emailExists = async (email) => {
  */
 const saveUser = async (name, email, password) => {
     try {
-        // TODO: Hash the password using hashPassword function
+        // Hash the password using hashPassword function
+        hashPassword(password);
 
         const query = `
             INSERT INTO users (name, email, password)
@@ -52,8 +62,11 @@ const saveUser = async (name, email, password) => {
             RETURNING id, name, email, created_at, updated_at
         `;
 
-        // TODO: Execute the query with the parameters and return the user data
-        // HINT: Use the hashed password, not the plain text password
+        // Execute the query with the parameters and return the user data
+        const values = [name, email, await hashPassword(password)];
+        const result = await db.query(query, values);
+        return result.rows[0] || null;
+        
 
     } catch (error) {
         console.error('DB Error in saveUser:', error);
@@ -73,7 +86,9 @@ const getAllUsers = async () => {
             ORDER BY created_at DESC
         `;
 
-        // TODO: Execute the query and return the rows
+        // Execute the query and return the rows
+        const result = await db.query(query);
+        return result.rows;
 
     } catch (error) {
         console.error('DB Error in getAllUsers:', error);
