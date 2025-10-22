@@ -10,10 +10,7 @@ const addFacultySpecificStyles = (res) => {
 // Function that renders the faculty list page
 const facultyListPage = async (req, res) => {
     const sortBy = req.query.sort || 'name';
-    console.log('Sort parameter received:', sortBy);
-    console.log('Full query object:', req.query);
     const faculty = await getSortedFaculty(sortBy);
-    console.log('Faculty count returned:', faculty.length);
     res.render('faculty/list', {
         title: 'Faculty Directory',
         facultyList: faculty,

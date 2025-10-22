@@ -87,10 +87,8 @@ const getFacultyBySlug = async (facultySlug) => {
  */
 const getSortedFaculty = async (sortBy = 'department') => {
     try {
-        console.log('Model received sortBy:', sortBy);
         const validSortFields = ['name', 'department', 'title'];
         if (!validSortFields.includes(sortBy)) {
-            console.log('Invalid sort field, defaulting to department');
             sortBy = 'department';
         }
 
@@ -108,8 +106,6 @@ const getSortedFaculty = async (sortBy = 'department') => {
             default:
                 orderByClause = 'd.name, f.last_name, f.first_name';
         }
-
-        console.log('Using ORDER BY clause:', orderByClause);
 
         const query = `
             SELECT f.id, f.first_name, f.last_name, f.office, f.phone, f.email,
