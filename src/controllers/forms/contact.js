@@ -2,6 +2,13 @@ import { body, validationResult } from 'express-validator';
 import { saveContactForm, getAllContactForms } from '../../models/forms/contact.js';
 
 /**
+ * Helper function to add styles specific to the contact pages only
+ */
+const addContactSpecificStyles = (res) => {
+    res.addStyle('<link rel="stylesheet" href="/css/contact.css">');
+};
+
+/**
  * Validation rules for contact form submission
  */
 const contactValidation = [
@@ -20,6 +27,7 @@ const contactValidation = [
  * Display the contact form
  */
 const showContactForm = (req, res) => {
+    addContactSpecificStyles(res);
     res.render('forms/contact/form', {
         title: 'Contact Us'
     });
@@ -55,6 +63,7 @@ const processContactForm = async (req, res) => {
  * Display all contact form submissions
  */
 const showContactResponses = async (req, res) => {
+    addContactSpecificStyles(res);
     const contactForms = await getAllContactForms();
 
     res.render('forms/contact/responses', {
