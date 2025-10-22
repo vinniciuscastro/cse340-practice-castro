@@ -9,6 +9,12 @@ import {
     showContactResponses, 
     contactValidation 
 } from './forms/contact.js';
+import { 
+    showRegistrationForm, 
+    processRegistration, 
+    showAllUsers, 
+    registrationValidation 
+} from './forms/registration.js';
 
 // Create a new router instance
 const router = Router();
@@ -21,8 +27,10 @@ router.get('/about', aboutPage);
 router.get('/catalog', catalogPage);
 router.get('/catalog/:courseId', courseDetailPage);
 
-// Demo page with special middleware
-router.get('/demo', addDemoHeaders, demoPage);
+// User registration routes
+router.get('/register', showRegistrationForm);
+router.post('/register', registrationValidation, processRegistration);
+router.get('/users', showAllUsers);
 
 // Faculty routes
 router.get('/faculty', facultyListPage);
@@ -32,6 +40,9 @@ router.get('/faculty/:facultyId', facultyDetailPage);
 router.get('/contact', showContactForm);
 router.post('/contact', contactValidation, processContactForm);
 router.get('/contact/responses', showContactResponses);
+
+// Demo page with special middleware
+router.get('/demo', addDemoHeaders, demoPage);
 
 // Route to trigger a test error
 router.get('/test-error', testErrorPage);
