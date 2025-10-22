@@ -20,7 +20,7 @@ const getCurrentGreeting = () => {
  */
 const setLocalVariables = (req, res) => {
     // Randomly assign a theme class to the body
-    const themes = ['blue-theme', 'green-theme', 'red-theme'];
+    const themes = ['blue-theme', 'pink-theme', 'yellow-theme'];
     const randomTheme = themes[Math.floor(Math.random() * themes.length)];
     res.locals.bodyClass = randomTheme;
 
