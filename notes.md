@@ -74,3 +74,24 @@ we are going to add registration and authentication in the page now (so please l
 
 Droplet Digital Ocean - ssh database set up $6 per month
             name cheap 
+
+_______________________________________________________________________________________
+Wednesday Class - 10/22/2025
+
+difference between snake_case and camelCase
+
+M C V logic to fix the problem above
+
+
+Servers 
+DNS 
+
+Example:
+
+    West    |    Central     |    East
+            |                |
+            |                |
+    FB  DB  |      FB  DB    |          KING
+            |                |   FB DB
+            |                |
+         ID |                |
