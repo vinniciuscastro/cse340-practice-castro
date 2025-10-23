@@ -47,31 +47,69 @@ const registrationValidation = [
  * Display the registration form
  */
 const showRegistrationForm = (req, res) => {
-    // TODO: Add registration-specific styles using res.addStyle()
-    // TODO: Render the registration form view (forms/registration/form)
+    // Add registration-specific styles using res.addStyle()
+    res.addStyle('<link rel="stylesheet" href="/css/registration.css">');
+
+    // Render the registration form view (forms/registration/form)
+    res.render('forms/registration/form', {
+        title: 'User Registration'
+    });
 };
 
 /**
  * Process user registration submission
  */
 const processRegistration = async (req, res) => {
-    // TODO: Check for validation errors using validationResult(req)
-    // TODO: If errors exist, redirect back to registration form
-    // TODO: Extract name, email, password from req.body
-    // TODO: Check if email already exists using emailExists()
-    // TODO: If email exists, log message and redirect back
-    // TODO: Save the user using saveUser()
-    // TODO: If save fails, log error and redirect back
-    // TODO: If successful, log success and redirect (maybe to users list?)
+    // Check for validation errors using validationResult(req)
+    const errors = validationResult(req);
+
+    // If errors exist, redirect back to registration form
+    if (!errors.isEmpty()) {
+        console.log('Validation errors:', errors.array());
+        return res.redirect('/register');
+    }
+
+    // Extract name, email, password from req.body
+    const { name, email, password } = req.body;
+
+    // Check if email already exists using emailExists()
+    const exists = await emailExists(email);
+
+    // If email exists, log message and redirect back
+    if (exists) {
+        console.log('Email already exists:', email);
+        return res.redirect('/register');
+    }
+
+    // Save the user using saveUser()
+    const savedUser = await saveUser(name, email, password);
+
+    // If save fails, log error and redirect back
+    if (!savedUser) {
+        console.log('Failed to save user.');
+        return res.redirect('/register');
+    }
+
+    // If successful, log success and redirect to users list
+    console.log('User registered successfully:', savedUser);
+    res.redirect('/register/users');
 };
 
 /**
  * Display all registered users
  */
 const showAllUsers = async (req, res) => {
-    // TODO: Get all users using getAllUsers()
-    // TODO: Add registration-specific styles
-    // TODO: Render the users list view (forms/registration/list) with the user data
+    // Get all users using getAllUsers()
+    const users = await getAllUsers();
+
+    // Add registration-specific styles
+    res.addStyle('<link rel="stylesheet" href="/css/registration.css">');
+
+    // Render the users list view (forms/registration/list) with the user data
+    res.render('forms/registration/list', {
+        title: 'Registered Users',
+        users: users
+    });
 };
 
 export { showRegistrationForm, processRegistration, showAllUsers, registrationValidation };
