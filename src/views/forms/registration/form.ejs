@@ -1,0 +1,38 @@
+<%- include('../../partials/header') %>
+<main>
+    <h1><%= title %></h1>
+    <p>
+        Register for a new account by providing your information below. All fields are required and passwords must meet security requirements.
+    </p>
+
+    <form method="POST" action="/register" class="registration-form">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" minlength="7" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmEmail">Confirm Email</label>
+            <input type="email" id="confirmEmail" name="confirmEmail" placeholder="Re-enter your email address" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="At least 8 characters, 1 number, 1 symbol" minlength="8" pattern="(?=.*[0-9])(?=.*[!@#$%^&*]).*" required>
+            <small>Must be at least 8 characters and contain at least one number and one symbol (!@#$%^&*)</small>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" minlength="8" required>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+</main>
+<%- include('../../partials/footer') %>
