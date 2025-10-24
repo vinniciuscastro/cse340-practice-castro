@@ -15,6 +15,14 @@ import {
     showAllUsers, 
     registrationValidation 
 } from './forms/registration.js';
+import { requireLogin } from '../middleware/auth.js';
+import { 
+    showLoginForm, 
+    processLogin, 
+    processLogout, 
+    showDashboard, 
+    loginValidation 
+} from './forms/login.js';
 
 // Create a new router instance
 const router = Router();
@@ -31,6 +39,14 @@ router.get('/catalog/:courseId', courseDetailPage);
 router.get('/register', showRegistrationForm);
 router.post('/register', registrationValidation, processRegistration);
 router.get('/users', showAllUsers);
+
+// Authentication routes
+router.get('/login', showLoginForm);
+router.post('/login', loginValidation, processLogin);
+router.get('/logout', processLogout);
+
+// Protected routes (require authentication)
+router.get('/dashboard', requireLogin, showDashboard);
 
 // Faculty routes
 router.get('/faculty', facultyListPage);
