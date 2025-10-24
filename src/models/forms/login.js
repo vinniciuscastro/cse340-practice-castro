@@ -15,7 +15,14 @@ const findUserByEmail = async (email) => {
     `;
 
     try {
-        // TODO: Return the user object if found, null otherwise
+        const result = await db.query(query, [email]);
+
+        // Return the user object if found, null otherwise
+        if (result.rows.length > 0) {
+            return result.rows[0];
+        }
+
+        return null;
     } catch (error) {
         console.error('DB Error in findUserByEmail:', error);
         return null;
@@ -30,9 +37,11 @@ const findUserByEmail = async (email) => {
  */
 const verifyPassword = async (plainPassword, hashedPassword) => {
     try {
-        // TODO: Use bcrypt.compare() to verify the password
-        // Return the result (true/false)
+        // Use bcrypt.compare() to verify the password
+        const isMatch = await bcrypt.compare(plainPassword, hashedPassword);
 
+        // Return the result (true/false)
+        return isMatch;
     } catch (error) {
         console.error('Error verifying password:', error);
         return false;

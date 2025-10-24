@@ -20,32 +20,63 @@ const loginValidation = [
  * Display the login form
  */
 const showLoginForm = (req, res) => {
-    // TODO: Add login-specific styles using res.addStyle()
-    // TODO: Render the login form view (forms/login/form)
-    // TODO: Pass appropriate title
+    // Add login-specific styles using res.addStyle()
+    res.addStyle('<link rel="stylesheet" href="/css/forms.css">', 10);
+
+    // Render the login form view (forms/login/form)
+    res.render('forms/login/form', {
+        title: 'Login'
+    });
 };
 
 /**
  * Process login form submission
  */
 const processLogin = async (req, res) => {
-    // TODO: Check for validation errors using validationResult(req)
-    // TODO: If errors exist, redirect back to login form
+    // Check for validation errors using validationResult(req)
+    const errors = validationResult(req);
 
-    // TODO: Extract email and password from req.body
+    // If errors exist, redirect back to login form
+    if (!errors.isEmpty()) {
+        console.log('Validation errors:', errors.array());
+        return res.redirect('/login');
+    }
 
-    // TODO: Find user by email using findUserByEmail()
-    // TODO: If user not found, log "User not found" and redirect back
+    // Extract email and password from req.body
+    const { email, password } = req.body;
 
-    // TODO: Verify password using verifyPassword()
-    // TODO: If password incorrect, log "Invalid password" and redirect back
+    try {
+        // Find user by email using findUserByEmail()
+        const user = await findUserByEmail(email);
 
-    // SECURITY: Remove the password from the user object first!
-    user.password = null;
-    delete user.password;
-    // TODO: Store user information in session: req.session.user = user object (without password)
+        // If user not found, log "User not found" and redirect back
+        if (!user) {
+            console.log('User not found');
+            return res.redirect('/login');
+        }
 
-    // TODO: Redirect to protected dashboard (/dashboard)
+        // Verify password using verifyPassword()
+        const isPasswordValid = await verifyPassword(password, user.password);
+
+        // If password incorrect, log "Invalid password" and redirect back
+        if (!isPasswordValid) {
+            console.log('Invalid password');
+            return res.redirect('/login');
+        }
+
+        // SECURITY: Remove the password from the user object first!
+        user.password = null;
+        delete user.password;
+
+        // Store user information in session: req.session.user = user object (without password)
+        req.session.user = user;
+
+        // Redirect to protected dashboard (/dashboard)
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error('Login error:', error);
+        res.redirect('/login');
+    }
 };
 
 /**
@@ -98,11 +129,27 @@ const showDashboard = (req, res) => {
     const user = req.session.user;
     const sessionData = req.session;
 
-    // TODO: Security check! Ensure user and sessionData does not contain the password field
+    // Security check! Ensure user and sessionData does not contain the password field
+    if (user && user.password) {
+        delete user.password;
+        user.password = null;
+    }
 
-    // TODO: Add login-specific styles
-    // TODO: Render the dashboard view (forms/login/dashboard)
-    // TODO: Pass title, user, and sessionData to template
+    // Double-check sessionData doesn't have password (though it shouldn't if we cleaned it)
+    if (sessionData && sessionData.user && sessionData.user.password) {
+        delete sessionData.user.password;
+        sessionData.user.password = null;
+    }
+
+    // Add login-specific styles
+    res.addStyle('<link rel="stylesheet" href="/css/forms.css">', 10);
+
+    // Render the dashboard view (forms/login/dashboard)
+    res.render('forms/login/dashboard', {
+        title: 'Dashboard',
+        user: user,
+        sessionData: sessionData
+    });
 };
 
 export { 

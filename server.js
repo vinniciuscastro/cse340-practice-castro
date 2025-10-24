@@ -8,12 +8,24 @@ import connectPgSimple from 'connect-pg-simple';
 // Import MVC components
 import routes from './src/controllers/routes.js';
 
+/**
+ * Server configuration
+ */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
+const PORT = process.env.PORT || 3000;
+
+/**
+ * Setup Express Server
+ */
+const app = express();
 
 // Initialize PostgreSQL session store
-    const pgSession = connectPgSimple(session);
+const pgSession = connectPgSimple(session);
 
-    // Configure session middleware
-    app.use(session({
+// Configure session middleware
+app.use(session({
     store: new pgSession({
         conString: process.env.DB_URL,
         tableName: 'session', // The name for our "sessions" table in the db
@@ -28,19 +40,6 @@ import routes from './src/controllers/routes.js';
         maxAge: 24 * 60 * 60 * 1000
     }
 }));
-
-/**
- * Server configuration
- */
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
-const PORT = process.env.PORT || 3000;
-
-/**
- * Setup Express Server
- */
-const app = express();
 
 /**
  * Configure Express

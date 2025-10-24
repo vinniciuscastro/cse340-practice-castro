@@ -15,12 +15,6 @@ const getCurrentGreeting = () => {
     return 'Good Evening!';
 };
 
-// Convenience variable for UI state based on session state
-res.locals.isLoggedIn = false;
-if (req.session && req.session.user) {
-    res.locals.isLoggedIn = true;
-}
-
 /**
  * Helper function to set all expected res.locals values
  */
@@ -41,6 +35,12 @@ const setLocalVariables = (req, res) => {
 
     // Make req.query available to all templates
     res.locals.queryParams = { ...req.query };
+
+    // Convenience variable for UI state based on session state
+    res.locals.isLoggedIn = false;
+    if (req.session && req.session.user) {
+        res.locals.isLoggedIn = true;
+    }
 };
 
 /**
