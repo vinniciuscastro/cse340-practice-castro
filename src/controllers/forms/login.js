@@ -21,7 +21,7 @@ const loginValidation = [
  */
 const showLoginForm = (req, res) => {
     // Add login-specific styles using res.addStyle()
-    res.addStyle('<link rel="stylesheet" href="/css/forms.css">', 10);
+    res.addStyle('<link rel="stylesheet" href="/css/login.css">', 10);
 
     // Render the login form view (forms/login/form)
     res.render('forms/login/form', {
@@ -142,7 +142,7 @@ const showDashboard = (req, res) => {
     }
 
     // Add login-specific styles
-    res.addStyle('<link rel="stylesheet" href="/css/forms.css">', 10);
+    res.addStyle('<link rel="stylesheet" href="/css/login.css">', 10);
 
     // Render the dashboard view (forms/login/dashboard)
     res.render('forms/login/dashboard', {
