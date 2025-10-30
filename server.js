@@ -7,6 +7,7 @@ import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 // Import MVC components
 import routes from './src/controllers/routes.js';
+import flash from './src/middleware/flash.js';
 
 /**
  * Server configuration
@@ -50,6 +51,14 @@ app.set('views', path.join(__dirname, 'src/views'));
 // Allow Express to receive and process common POST data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+/**
+ * Global Middleware
+ */
+
+app.use(flash); // Add this line BEFORE globalMiddleware
+
+app.use(globalMiddleware);
 
 /**
  * Global Middleware
