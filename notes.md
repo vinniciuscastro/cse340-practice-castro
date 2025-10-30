@@ -95,3 +95,16 @@ Example:
             |                |   FB DB
             |                |
          ID |                |
+
+
+_______________________________________________________________________________________
+Monday Class - 10/27/2025
+
+Talking about Web Socket VS HTTP Request Response Lifecycle (flash message system is the resolution of redirecting POST validation)
+
+_______________________________________________________________________________________
+Wednesday Class - 10/29/2025
+
+Access control - Unit 4 stuff
+
+final project 
