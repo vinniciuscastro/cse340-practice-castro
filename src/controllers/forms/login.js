@@ -38,7 +38,7 @@ const processLogin = async (req, res) => {
 
     // If errors exist, redirect back to login form
     if (!errors.isEmpty()) {
-        console.log('Validation errors:', errors.array());
+        req.flash('error', 'Please check your input and try again.');
         return res.redirect('/login');
     }
 
@@ -51,7 +51,7 @@ const processLogin = async (req, res) => {
 
         // If user not found, log "User not found" and redirect back
         if (!user) {
-            console.log('User not found');
+            req.flash('error', 'Invalid email or password');
             return res.redirect('/login');
         }
 
@@ -60,7 +60,7 @@ const processLogin = async (req, res) => {
 
         // If password incorrect, log "Invalid password" and redirect back
         if (!isPasswordValid) {
-            console.log('Invalid password');
+            req.flash('error', 'Invalid email or password');
             return res.redirect('/login');
         }
 
@@ -75,6 +75,7 @@ const processLogin = async (req, res) => {
         res.redirect('/dashboard');
     } catch (error) {
         console.error('Login error:', error);
+        req.flash('error', 'An error occurred. Please try again.');
         res.redirect('/login');
     }
 };

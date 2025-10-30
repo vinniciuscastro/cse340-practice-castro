@@ -65,7 +65,7 @@ const processRegistration = async (req, res) => {
 
     // If errors exist, redirect back to registration form
     if (!errors.isEmpty()) {
-        console.log('Validation errors:', errors.array());
+        req.flash('error', 'Please check your input and try again.');
         return res.redirect('/register');
     }
 
@@ -77,7 +77,7 @@ const processRegistration = async (req, res) => {
 
     // If email exists, log message and redirect back
     if (exists) {
-        console.log('Email already exists:', email);
+        req.flash('warning', 'An account with this email already exists');
         return res.redirect('/register');
     }
 
@@ -86,12 +86,12 @@ const processRegistration = async (req, res) => {
 
     // If save fails, log error and redirect back
     if (!savedUser) {
-        console.log('Failed to save user.');
+        req.flash('error', 'Failed to create account. Please try again.');
         return res.redirect('/register');
     }
 
     // If successful, log success and redirect to users list
-    console.log('User registered successfully:', savedUser);
+    req.flash('success', 'Registration complete! You can now log in.');
     res.redirect('/register/users');
 };
 
