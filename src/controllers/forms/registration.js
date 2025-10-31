@@ -1,5 +1,12 @@
 import { body, validationResult } from 'express-validator';
-import { emailExists, saveUser, getAllUsers } from '../../models/forms/registration.js';
+import {
+    emailExists,
+    saveUser,
+    getAllUsers,
+    getUserById,
+    updateUser,
+    deleteUser
+} from '../../models/forms/registration.js';
 
 /**
  * Comprehensive validation rules for user registration
@@ -112,4 +119,47 @@ const showAllUsers = async (req, res) => {
     });
 };
 
-export { showRegistrationForm, processRegistration, showAllUsers, registrationValidation };
+/**
+ * Display the edit account form
+ * Users can edit their own account, admins can edit any account
+ */
+const showEditAccountForm = async (req, res) => {
+    const targetUserId = parseInt(req.params.id);
+    const currentUser = req.session.user;
+
+    // Retrieve the target user from the database using getUserById
+    const targetUser = await getUserById(targetUserId);
+
+    // Check if the target user exists
+    if (!targetUser) {
+        // If not, set flash message and redirect to /register/users
+        req.flash('error', 'User not found.');
+        return res.redirect('/register/users');
+    }
+
+    // Determine if current user can edit this account
+    // Users can edit their own (currentUser.id === targetUserId)
+    // Admins can edit anyone (currentUser.role_name === 'admin')
+    const canEdit = currentUser.id === targetUserId || currentUser.role_name === 'admin';
+
+    // If current user cannot edit, set flash message and redirect
+    if (!canEdit) {
+        req.flash('error', 'You do not have permission to edit this account.');
+        return res.redirect('/');
+    }
+
+    // Render the edit form, passing the target user data
+    res.addStyle('<link rel="stylesheet" href="/css/registration.css">');
+    res.render('forms/registration/edit', {
+        title: 'Edit Account',
+        user: targetUser
+    });
+};
+
+export {
+    showRegistrationForm,
+    processRegistration,
+    showAllUsers,
+    showEditAccountForm,
+    registrationValidation
+};
